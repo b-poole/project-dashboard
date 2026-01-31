@@ -6,55 +6,59 @@ function App() {
       <div className='sidebar'>
         <div className='brand-area'>
           <span className='brand-accent' />
-          
+          ProjectHub
         </div>
 
         <div className='nav-list'>
-
+          Dashboard
+          Issues
+          Team
+          Archive
+          Settings
         </div>
 
         <div className='sidebar-footer'>
-
+          v0.1.0
         </div>
       </div>
 
       <div className='main-content'>
         <header className='app-header'>
           <div className='project-selector'>
-
+            Core Platform ▼
           </div>
 
           <div className='search-bar'>
-
+            Search Issues...
           </div>
 
           <div className='header-actions'>
-
+            + Create Issue    AC
           </div>
         </header>
 
         <main className='page-content'>
           <div className='page-header'>
             <div className='title'>
-
+              Issues
             </div>
 
             <div className='subtitle'>
-
+              12 Issues
             </div>
           </div>
 
           <div className='filter-bar'>
             <div className='filter-label'>
-
+              Filters:
             </div>
 
             <div className='status-filter'>
-
+              All Status ▼
             </div>
 
             <div className='priority-filter'>
-
+              All Priorities ▼
             </div>
           </div>
 
@@ -72,32 +76,96 @@ function App() {
                 <tr className='issue-row'>
                   <td className='issue-info'>
                     <div className='issue-meta'>
-
+                      CORE-101
                     </div>
 
                     <div className='issue-title'>
-
+                      Implement user authentication flow
                     </div>
 
                     <div className='issue-tags'>
-
+                      backend • security
                     </div>
                   </td>
 
                   <td className='status-badge'>
-
+                    In Progress
                   </td>
 
                   <td className='priority-indicator'>
-
+                    ↑ High
                   </td>
 
                   <td className='assignee'>
-
+                    Alex Chen
                   </td>
 
                   <td className='updated-day'>
+                    Yesterday
+                  </td>
+                </tr>
 
+                <tr className='issue-row'>
+                  <td className='issue-info'>
+                    <div className='issue-meta'>
+                      CORE-102
+                    </div>
+
+                    <div className='issue-title'>
+                      Fix memory leak in dashboard
+                    </div>
+
+                    <div className='issue-tags'>
+                      backend • security
+                    </div>
+                  </td>
+
+                  <td className='status-badge'>
+                    Open
+                  </td>
+
+                  <td className='priority-indicator'>
+                    ! Urgent
+                  </td>
+
+                  <td className='assignee'>
+                    Sam Taylor
+                  </td>
+
+                  <td className='updated-day'>
+                    Yesterday
+                  </td>
+                </tr>
+
+                <tr className='issue-row'>
+                  <td className='issue-info'>
+                    <div className='issue-meta'>
+                      MOB-201
+                    </div>
+
+                    <div className='issue-title'>
+                      Implement offline mode
+                    </div>
+
+                    <div className='issue-tags'>
+                      backend • security
+                    </div>
+                  </td>
+
+                  <td className='status-badge'>
+                    In Review
+                  </td>
+
+                  <td className='priority-indicator'>
+                    - Medium
+                  </td>
+
+                  <td className='assignee'>
+                    Jordan Smith
+                  </td>
+
+                  <td className='updated-day'>
+                    2 days ago
                   </td>
                 </tr>
               </tbody>
