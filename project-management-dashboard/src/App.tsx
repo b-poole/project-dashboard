@@ -10,11 +10,11 @@ function App() {
         </div>
 
         <div className='nav-list'>
-          Dashboard
-          Issues
-          Team
-          Archive
-          Settings
+          <div className="nav-item">Dashboard</div>
+          <div className="nav-item active">Issues</div>
+          <div className="nav-item">Team</div>
+          <div className="nav-item">Archive</div>
+          <div className="nav-item">Settings</div>
         </div>
 
         <div className='sidebar-footer'>
@@ -28,9 +28,11 @@ function App() {
             Core Platform ▼
           </div>
 
-          <div className='search-bar'>
-            Search Issues...
-          </div>
+          <input
+            className="search-bar"
+            placeholder="Search issues…"
+            disabled
+          />
 
           <div className='header-actions'>
             + Create Issue    AC
@@ -64,12 +66,14 @@ function App() {
 
           <div className='issues-table'>
             <table>
-              <thead className='table-header'>
-                <th>Issue</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Assignee</th>
-                <th>Updated</th>
+              <thead>
+                <tr className='table-header'>
+                  <th>Issue</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                  <th>Assignee</th>
+                  <th>Updated</th>
+                </tr>
               </thead>
 
               <tbody>
