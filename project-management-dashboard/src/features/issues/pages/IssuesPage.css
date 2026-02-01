@@ -16,75 +16,9 @@
   color: #6b7280;
 }
 
-/* Filter Bar */
-
-.filter-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.filter-label {
-  font-size: 14px;
-  color: #6b7280;
-}
-
-.status-filter,
-.priority-filter {
-  padding: 6px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
-  background-color: #ffffff;
-}
-
 .issues-toolbar {
   position: relative;
   margin-bottom: 16px;
-}
-
-.filter-button {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.filter-dropdown {
-  position: absolute;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  padding: 4px;
-  z-index: 10;
-}
-
-.filter-dropdown.status {
-  top: 200px;
-  left: 315px;
-}
-
-.filter-dropdown.priority {
-  top: 200px;
-  left: 450px;
-}
-
-.filter-option {
-  display: block;
-  width: 100%;
-  padding: 8px 12px;
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.filter-option:hover {
-  background: #f3f4f6;
 }
 
 /* Issues Table */
