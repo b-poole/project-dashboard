@@ -1,7 +1,9 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import '../App.css'
 
 function Layout() {
+  const navigate = useNavigate();
+
   return (
     <div className="app-shell">
       <div className="sidebar">
@@ -36,7 +38,14 @@ function Layout() {
           />
 
           <div className="header-actions">
-            + Create Issue &nbsp; AC
+            <button
+              className="btn-primary"
+              onClick={() => navigate('/issues/new')}
+            >
+              + Create Issue
+            </button>
+
+            <span className="user-initials">AC</span>
           </div>
         </header>
 
