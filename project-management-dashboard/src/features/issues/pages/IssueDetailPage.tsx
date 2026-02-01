@@ -18,6 +18,8 @@ export default function IssueDetailPage() {
     (issue) => issue.id === issueId
   );
 
+  const statusClass = !issue ? '' : issue.status.toLowerCase().replace(' ', '-');
+
   const startEditing = () => {
     if (!issue) return;
     setDraftIssue({ ...issue });
@@ -70,8 +72,13 @@ export default function IssueDetailPage() {
         <div className="issue-header">
           <div className="issue-header-left">
             <span className="issue-key">{issue.id}</span>
-            <span className="status-pill in-progress">{issue.status}</span>
-            <span className="priority high">{issue.priority}</span>
+            <span className={`status-pill ${statusClass}`}>{issue.status}</span>
+            <span className={`priority-pill ${issue.priority.toLowerCase()}`}>
+              {issue.priority === 'Urgent' && '! '}
+              {issue.priority === 'High' && '↑ '}
+              {issue.priority === 'Medium' && '– '}
+              {issue.priority}
+            </span>
           </div>
 
           <div className="issue-header-actions">

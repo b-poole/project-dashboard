@@ -69,11 +69,21 @@
 
 /* Pills */
 
-.status-pill {
+.status-pill,
+.priority-pill {
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 999px;
   font-weight: 500;
+  display: inline-block;
+}
+
+
+/* Status colors */
+
+.status-pill.open {
+  background: #f3f4f6;
+  color: #374151;
 }
 
 .status-pill.in-progress {
@@ -81,13 +91,36 @@
   color: #4338ca;
 }
 
-.priority {
-  font-size: 12px;
-  font-weight: 500;
+.status-pill.in-review {
+  background: #fff7ed;
+  color: #9a3412;
 }
 
-.priority.high {
-  color: #dc2626;
+.status-pill.done {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+/* Priority colors */
+
+.priority-pill.urgent {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.priority-pill.high {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.priority-pill.medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.priority-pill.low {
+  background: #e0f2fe;
+  color: #075985;
 }
 
 /* Actions */
