@@ -1,8 +1,30 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { mockIssues } from "../data/mockIssue";
+import type { Issue } from "../types";
 import "./IssueDetailPage.css";
 
 export default function IssueDetailPage() {
   const navigate = useNavigate();
+  const {issueId} = useParams<{issueId: string}>();
+
+  const issue: Issue | undefined = mockIssues.find(
+    (issue) => issue.id === issueId
+  );
+
+  if (!issue) {
+    return (
+        <div className="issue-detail-page">
+            <button className="back-link" onClick={() => navigate("/issues")}>
+                ← Back to issues
+            </button>
+
+            <div className="issue-card">
+                <h2>Issue not found</h2>
+                <p>The issue you’re looking for doesn’t exist.</p>
+            </div>
+        </div>
+    )
+  }
 
   return (
     <div className="issue-detail-page">
@@ -18,9 +40,9 @@ export default function IssueDetailPage() {
         {/* Header */}
         <div className="issue-header">
           <div className="issue-header-left">
-            <span className="issue-key">CORE-101</span>
-            <span className="status-pill in-progress">In Progress</span>
-            <span className="priority high">↑ High</span>
+            <span className="issue-key">{issue.id}</span>
+            <span className="status-pill in-progress">{issue.status}</span>
+            <span className="priority high">{issue.priority}</span>
           </div>
 
           <div className="issue-header-actions">
@@ -31,29 +53,29 @@ export default function IssueDetailPage() {
 
         {/* Title */}
         <h1 className="issue-title">
-          Implement user authentication flow
+          {issue.title}
         </h1>
 
         {/* Meta grid */}
         <div className="issue-meta-grid">
           <div>
             <label>Status</label>
-            <div>In Progress</div>
+            <div>{issue.status}</div>
           </div>
 
           <div>
             <label>Priority</label>
-            <div>High</div>
+            <div>{issue.priority}</div>
           </div>
 
           <div>
             <label>Assignee</label>
-            <div className="user-pill">Alex Chen</div>
+            <div className="user-pill">{issue.assignee}</div>
           </div>
 
           <div>
             <label>Reporter</label>
-            <div className="user-pill">Jordan Smith</div>
+            <div className="user-pill">{issue.reporter}</div>
           </div>
         </div>
 
@@ -61,9 +83,7 @@ export default function IssueDetailPage() {
         <section className="issue-section">
           <h3>Description</h3>
           <p>
-            Add OAuth2 authentication with support for GitHub and Google
-            providers. Include token refresh logic and secure session
-            management.
+            {issue.description}
           </p>
         </section>
 
@@ -71,15 +91,18 @@ export default function IssueDetailPage() {
         <section className="issue-section">
           <h3>Tags</h3>
           <div className="tag-list">
-            <span className="tag">backend</span>
-            <span className="tag">security</span>
+            {issue.tags.map((tag) => (
+                <span key={tag} className="tag">
+                {tag}
+                </span>
+            ))}
           </div>
         </section>
 
         {/* Footer */}
         <div className="issue-footer">
-          <span>📅 Created Jan 14, 2026</span>
-          <span>📅 Updated Jan 29, 2026</span>
+          <span>📅 Created {issue.createdAt}</span>
+          <span>📅 Updated {issue.updatedAt}</span>
         </div>
       </div>
     </div>

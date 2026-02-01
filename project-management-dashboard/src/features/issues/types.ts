@@ -6,8 +6,11 @@ export type Issue = {
   id: string
   title: string
   tags: string[]
+  description: string
   status: IssueStatus
   priority: IssuePriority
   assignee: string
+  reporter: string
   updatedAt: string
+  createdAt: string
 }

@@ -9,6 +9,9 @@ export const mockIssues: Issue[] = [
     priority: 'High',
     assignee: 'Alex Chen',
     updatedAt: 'Yesterday',
+    reporter: 'Mike Bravo',
+    description: "implemenet OAuth for the masses",
+    createdAt: "June 11 2024"
   },
   {
     id: 'CORE-102',
@@ -18,6 +21,9 @@ export const mockIssues: Issue[] = [
     priority: 'Urgent',
     assignee: 'Sam Taylor',
     updatedAt: 'Yesterday',
+    reporter: "Bob Smith",
+    description: "Memory leak found in REDACTED",
+    createdAt: 'May 3 1998'
   },
   {
     id: 'MOB-201',
@@ -27,5 +33,8 @@ export const mockIssues: Issue[] = [
     priority: 'Medium',
     assignee: 'Jordan Smith',
     updatedAt: '2 days ago',
+    reporter: "Brandon Jones",
+    description: "Offline mode is cool",
+    createdAt: 'April 2 2025'
   },
 ]
