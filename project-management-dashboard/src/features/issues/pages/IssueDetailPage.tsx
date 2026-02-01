@@ -1,11 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { mockIssues } from "../data/mockIssue";
-import type { Issue, IssueStatus, IssuePriority } from "../types";
+import { IssueForm } from "../components/IssuesForm";
+import type { Issue } from "../types";
 import { useState } from "react";
 import "./IssueDetailPage.css";
-
-const STATUS_OPTIONS = ['Open', 'In Progress', 'In Review', 'Done'] as const;
-const PRIORITY_OPTIONS = ['Urgent', 'High', 'Medium', 'Low'] as const;
 
 export default function IssueDetailPage() {
   const navigate = useNavigate();
@@ -94,114 +92,50 @@ export default function IssueDetailPage() {
           </div>
         </div>
 
-        {/* Title */}
-        <div className="issue-title">
-          {isEditing ? (
-            <input
-              value={draftIssue?.title ?? ''}
-              onChange={(e) =>
-                setDraftIssue((prev) =>
-                  prev ? { ...prev, title: e.target.value } : prev
-                )
-              }
+        {isEditing ? (
+          <IssueForm
+              issue={draftIssue!}
+              onChange={setDraftIssue}
             />
-          ) : (
-            <h1>{issue.title}</h1>
-          )}
-        </div>
-
-        {/* Meta grid */}
-        <div className="issue-meta-grid">
-          <div className="issue-field">
-            <label>Status</label>
-
-            {isEditing ? (
-              <select
-                value={draftIssue?.status ?? ''}
-                onChange={(e) => {
-                  const value = e.target.value as IssueStatus;
-
-                  setDraftIssue((prev) =>
-                    prev ? { ...prev, status: value } : prev
-                  )}
-                }
-              >
-                {STATUS_OPTIONS.map((status) => (
-                  <option key={status} value={status}>
-                    {status}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <span>{issue.status}</span>
-            )}
-          </div>
-
-          <div className="issue-field">
-            <label>Priority</label>
-
-            {isEditing ? (
-              <select
-                value={draftIssue?.priority ?? ''}
-                onChange={(e) => {
-                  const value = e.target.value as IssuePriority;
-
-                  setDraftIssue((prev) =>
-                    prev ? { ...prev, priority: value } : prev
-                  )}
-                }
-              >
-                {PRIORITY_OPTIONS.map((priority) => (
-                  <option key={priority} value={priority}>
-                    {priority}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <div className="issue-value">{issue.priority}</div>
-            )}
-          </div>
-
-          <div>
-            <label>Assignee</label>
-            <div className="user-pill">
-              {isEditing ? (
-                <textarea
-                  value={draftIssue?.assignee ?? ''}
-                  onChange={(e) =>
-                    setDraftIssue((prev) =>
-                      prev ? { ...prev, assignee: e.target.value } : prev
-                    )
-                  }
-                />
-              ) : (
-                <p>{issue.assignee}</p>
-              )}
+        ) : (
+          <>
+            {/* Title */}
+            <div className="issue-title">
+              <h1>{issue.title}</h1>
             </div>
-          </div>
 
-          <div>
-            <label>Reporter</label>
-            <div className="user-pill">{issue.reporter}</div>
-          </div>
-        </div>
+            {/* Meta grid */}
+            <div className="issue-meta-grid">
+              <div className="issue-field">
+                <label>Status</label>
+                <span>{issue.status}</span>
+              </div>
 
-        {/* Description */}
-        <section className="issue-section">
-          <h3>Description</h3>
-          {isEditing ? (
-            <textarea
-              value={draftIssue?.description ?? ''}
-              onChange={(e) =>
-                setDraftIssue((prev) =>
-                  prev ? { ...prev, description: e.target.value } : prev
-                )
-              }
-            />
-          ) : (
-            <p>{issue.description}</p>
-          )}
-        </section>
+              <div className="issue-field">
+                <label>Priority</label>
+                <div className="issue-value">{issue.priority}</div>
+              </div>
+
+              <div>
+                <label>Assignee</label>
+                <div className="user-pill">
+                  <p>{issue.assignee}</p>
+                </div>
+              </div>
+
+              <div>
+                <label>Reporter</label>
+                <div className="user-pill">{issue.reporter}</div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <section className="issue-section">
+              <h3>Description</h3>
+              <p>{issue.description}</p>
+            </section>
+          </>
+        )}
 
         {/* Tags */}
         <section className="issue-section">

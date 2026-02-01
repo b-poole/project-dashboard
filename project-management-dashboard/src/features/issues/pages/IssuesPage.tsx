@@ -1,5 +1,5 @@
 import { IssueRow } from '../components/IssueRow'
-import { IssuesFilters } from '../../../components/IssuesFilters'
+import { IssuesFilters } from '../components/IssuesFilters'
 import { mockIssues } from '../data/mockIssue'
 import type { Issue } from '../types'
 import { useSearchParams } from 'react-router-dom'
