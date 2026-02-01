@@ -47,16 +47,16 @@
   overflow: hidden;
 }
 
-table {
+.issues-table table {
   width: 100%;
   border-collapse: collapse;
 }
 
-thead {
+.issues-table thead {
   background-color: #f9fafb;
 }
 
-th {
+.issues-table th {
   text-align: left;
   font-size: 12px;
   font-weight: 600;
