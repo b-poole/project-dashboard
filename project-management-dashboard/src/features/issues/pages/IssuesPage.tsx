@@ -2,21 +2,42 @@ import { IssueRow } from '../components/IssueRow'
 import { IssuesFilters } from '../../../components/IssuesFilters'
 import { mockIssues } from '../data/mockIssue'
 import type { Issue } from '../types'
-import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import './IssuesPage.css'
 
 const issues: Issue[] = mockIssues;
 
 export default function IssuesPage() {
-    const [selectedStatus, setSelectedStatus] = useState<string>("All");
-    const [selectedPriority, setSelectedPriority] = useState<string>('All');
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [selectedStatus, setSelectedStatus] = useState(searchParams.get('status') ?? 'All');
+    const [selectedPriority, setSelectedPriority] = useState(searchParams.get('priority') ?? 'All');
+    const [searchQuery, setSearchQuery] = useState(searchParams.get('q') ?? '');
 
     const clearFilters = () => {
         setSelectedStatus('All');
         setSelectedPriority('All');
         setSearchQuery('');
     };
+
+    useEffect(() => {
+        const params: Record<string, string> = {};
+
+        if (selectedStatus !== 'All') {
+            params.status = selectedStatus;
+        }
+
+        if (selectedPriority !== 'All') {
+            params.priority = selectedPriority;
+        }
+
+        if (searchQuery.trim() !== '') {
+            params.q = searchQuery;
+        }
+
+        setSearchParams(params);
+    }, [selectedStatus, selectedPriority, searchQuery, setSearchParams]);
 
     const filteredIssues = issues.filter((issue) => {
         const statusMatch = 
