@@ -1,11 +1,16 @@
 import { IssueRow } from '../components/IssueRow'
 import { mockIssues } from '../data/mockIssue'
 import type { Issue } from '../types'
+import { useState } from 'react'
 import './IssuesPage.css'
 
 const issues: Issue[] = mockIssues;
 
 export default function IssuesPage() {
+    const [openFilter, setOpenFilter] = useState(0);
+    const [selectedStatus, setSelectedStatus] = useState<string>("All");
+    const [selectedPriority, setSelectedPriority] = useState<string>('All');
+
     return (
         <>
             <div className='page-header'>
@@ -23,13 +28,53 @@ export default function IssuesPage() {
                 Filters:
                 </div>
 
-                <div className='status-filter'>
-                All Status ▼
-                </div>
+                <button
+                    className='filter-button'
+                    onClick={() => openFilter != 1 && setOpenFilter(1)}
+                >
+                    Status: {selectedStatus}
+                </button>
 
-                <div className='priority-filter'>
-                All Priorities ▼
-                </div>
+                <button
+                    className='filter-button'
+                    onClick={() => openFilter != 2 && setOpenFilter(2)}
+                >
+                    Priority: {selectedPriority}
+                </button>
+
+                {openFilter === 1 && (
+                    <div className="filter-dropdown status">
+                    {["All", "Open", "In Progress", "In Review"].map((status) => (
+                        <button
+                            key={status}
+                            className="filter-option"
+                            onClick={() => {
+                                setSelectedStatus(status);
+                                setOpenFilter(0);
+                            }}
+                        >
+                            {status}
+                        </button>
+                    ))}
+                    </div>
+                )}
+
+                {openFilter === 2 && (
+                    <div className="filter-dropdown priority">
+                    {["All", "Urgent", "High", "Medium", "Low"].map((priority) => (
+                        <button
+                            key={priority}
+                            className="filter-option"
+                            onClick={() => {
+                                setSelectedPriority(priority);
+                                setOpenFilter(0);
+                            }}
+                        >
+                            {priority}
+                        </button>
+                    ))}
+                    </div>
+                )}
             </div>
 
             <div className='issues-table'>
