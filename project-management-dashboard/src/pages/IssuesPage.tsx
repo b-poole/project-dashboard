@@ -1,5 +1,45 @@
 import './IssuesPage.css'
 
+type Issue = {
+    id: string
+    title: string
+    tags: string[]
+    status: 'Open' | 'In Progress' | 'In Review'
+    priority: 'Urgent' | 'High' | 'Medium' | 'Low'
+    assignee: string
+    updatedAt: string
+}
+
+const issues: Issue[] = [
+  {
+    id: 'CORE-101',
+    title: 'Implement user authentication flow',
+    tags: ['backend', 'security'],
+    status: 'In Progress',
+    priority: 'High',
+    assignee: 'Alex Chen',
+    updatedAt: 'Yesterday',
+  },
+  {
+    id: 'CORE-102',
+    title: 'Fix memory leak in dashboard',
+    tags: ['backend', 'performance'],
+    status: 'Open',
+    priority: 'Urgent',
+    assignee: 'Sam Taylor',
+    updatedAt: 'Yesterday',
+  },
+  {
+    id: 'MOB-201',
+    title: 'Implement offline mode',
+    tags: ['mobile', 'sync'],
+    status: 'In Review',
+    priority: 'Medium',
+    assignee: 'Jordan Smith',
+    updatedAt: '2 days ago',
+  },
+]
+
 export default function IssuesPage() {
     return (
         <>
@@ -29,113 +69,50 @@ export default function IssuesPage() {
 
             <div className='issues-table'>
                 <table>
-                <thead>
-                    <tr className='table-header'>
-                    <th>Issue</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>Assignee</th>
-                    <th>Updated</th>
-                    </tr>
-                </thead>
+                    <thead>
+                        <tr className='table-header'>
+                        <th>Issue</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Assignee</th>
+                        <th>Updated</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <tr className='issue-row'>
-                    <td className='issue-info'>
-                        <div className='issue-meta'>
-                        CORE-101
-                        </div>
+                    <tbody>
+                        {issues.map((issue) => (
+                            <tr key={issue.id} className='issue-row'>
+                                <td className='issue-info'>
+                                    <div className='issue-meta'>{issue.id}</div>
 
-                        <div className='issue-title'>
-                        Implement user authentication flow
-                        </div>
+                                    <div className='issue-title'>{issue.title}</div>
 
-                        <div className='issue-tags'>
-                        backend • security
-                        </div>
-                    </td>
+                                    <div className='issue-tags'>
+                                        {issue.tags.join(' • ')}
+                                    </div>
+                                </td>
 
-                    <td className='status-badge'>
-                        In Progress
-                    </td>
+                                <td className='status-badge'>
+                                    {issue.status}
+                                </td>
 
-                    <td className='priority-indicator'>
-                        ↑ High
-                    </td>
+                                <td className='priority-indicator'>
+                                    {issue.priority === 'Urgent' && '! '}
+                                    {issue.priority === 'High' && '↑ '}
+                                    {issue.priority === 'Medium' && '- '}
+                                    {issue.priority}
+                                </td>
 
-                    <td className='assignee'>
-                        Alex Chen
-                    </td>
+                                <td className='assignee'>
+                                    {issue.assignee}
+                                </td>
 
-                    <td className='updated-day'>
-                        Yesterday
-                    </td>
-                    </tr>
-
-                    <tr className='issue-row'>
-                    <td className='issue-info'>
-                        <div className='issue-meta'>
-                        CORE-102
-                        </div>
-
-                        <div className='issue-title'>
-                        Fix memory leak in dashboard
-                        </div>
-
-                        <div className='issue-tags'>
-                        backend • security
-                        </div>
-                    </td>
-
-                    <td className='status-badge'>
-                        Open
-                    </td>
-
-                    <td className='priority-indicator'>
-                        ! Urgent
-                    </td>
-
-                    <td className='assignee'>
-                        Sam Taylor
-                    </td>
-
-                    <td className='updated-day'>
-                        Yesterday
-                    </td>
-                    </tr>
-
-                    <tr className='issue-row'>
-                    <td className='issue-info'>
-                        <div className='issue-meta'>
-                        MOB-201
-                        </div>
-
-                        <div className='issue-title'>
-                        Implement offline mode
-                        </div>
-
-                        <div className='issue-tags'>
-                        backend • security
-                        </div>
-                    </td>
-
-                    <td className='status-badge'>
-                        In Review
-                    </td>
-
-                    <td className='priority-indicator'>
-                        - Medium
-                    </td>
-
-                    <td className='assignee'>
-                        Jordan Smith
-                    </td>
-
-                    <td className='updated-day'>
-                        2 days ago
-                    </td>
-                    </tr>
-                </tbody>
+                                <td className='updated-day'>
+                                    {issue.updatedAt}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             </div>
         </>
