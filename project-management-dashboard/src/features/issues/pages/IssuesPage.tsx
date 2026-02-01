@@ -11,6 +11,16 @@ export default function IssuesPage() {
     const [selectedStatus, setSelectedStatus] = useState<string>("All");
     const [selectedPriority, setSelectedPriority] = useState<string>('All');
 
+    const filteredIssues = issues.filter((issue) => {
+        const statusMatch = 
+            selectedStatus === 'All' || issue.status === selectedStatus;
+
+        const priorityMatch =
+            selectedPriority === 'All' || issue.priority === selectedPriority;
+
+        return statusMatch && priorityMatch;
+    });
+
     return (
         <>
             <div className='page-header'>
@@ -19,7 +29,7 @@ export default function IssuesPage() {
                 </div>
 
                 <div className='subtitle'>
-                12 Issues
+                {filteredIssues.length} Issues
                 </div>
             </div>
 
@@ -90,7 +100,7 @@ export default function IssuesPage() {
                     </thead>
 
                     <tbody>
-                        {issues.map((issue) => (
+                        {filteredIssues.map((issue) => (
                             <IssueRow key={issue.id} issue={issue} />
                         ))}
                     </tbody>
