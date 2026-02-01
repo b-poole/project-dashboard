@@ -51,9 +51,17 @@ export default function IssuesPage() {
                 placeholder="Search issues…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                />
+            />
 
-            <div className='issues-table'>
+            {filteredIssues.length === 0 ? (
+                <div className='empty-state'>
+                    <div className='empty-title'>No issues found</div>
+                    <div className='empty-subtitle'>
+                        Try adjusting your filters or search terms
+                    </div>
+                </div>
+            ): (
+                <div className='issues-table'>
                 <table>
                     <thead>
                         <tr className='table-header'>
@@ -72,6 +80,7 @@ export default function IssuesPage() {
                     </tbody>
                 </table>
             </div>
+            )}
         </>
     )
 }
