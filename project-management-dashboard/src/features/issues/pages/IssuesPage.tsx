@@ -12,6 +12,12 @@ export default function IssuesPage() {
     const [selectedPriority, setSelectedPriority] = useState<string>('All');
     const [searchQuery, setSearchQuery] = useState("");
 
+    const clearFilters = () => {
+        setSelectedStatus('All');
+        setSelectedPriority('All');
+        setSearchQuery('');
+    };
+
     const filteredIssues = issues.filter((issue) => {
         const statusMatch = 
             selectedStatus === 'All' || issue.status === selectedStatus;
@@ -34,7 +40,7 @@ export default function IssuesPage() {
                 </div>
 
                 <div className='subtitle'>
-                {filteredIssues.length} Issues
+                {filteredIssues.length} of {issues.length} Issues
                 </div>
             </div>
 
@@ -59,6 +65,13 @@ export default function IssuesPage() {
                     <div className='empty-subtitle'>
                         Try adjusting your filters or search terms
                     </div>
+
+                    <button
+                        className="clear-filters-button"
+                        onClick={clearFilters}
+                    >
+                        Clear filters
+                    </button>
                 </div>
             ): (
                 <div className='issues-table'>
