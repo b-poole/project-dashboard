@@ -37,19 +37,23 @@ export function IssuesFilters({
     <div className="filter-bar" ref={filterRef}>
       <div className="filter-label">Filters:</div>
 
-      <button
-        className="filter-button"
-        onClick={() => setOpenFilter(openFilter === 1 ? 0 : 1)}
-      >
-        Status: {selectedStatus}
-      </button>
-
-      <button
-        className="filter-button"
-        onClick={() => setOpenFilter(openFilter === 2 ? 0 : 2)}
-      >
-        Priority: {selectedPriority}
-      </button>
+      <div className="filter-item">
+        <button
+          className="filter-button"
+          onClick={() => setOpenFilter(openFilter === 1 ? 0 : 1)}
+        >
+          Status: {selectedStatus}
+        </button>
+      </div>
+      
+      <div className="filter-item">
+        <button
+          className="filter-button"
+          onClick={() => setOpenFilter(openFilter === 2 ? 0 : 2)}
+        >
+          Priority: {selectedPriority}
+        </button>
+      </div>
 
       {openFilter === 1 && (
         <div className="filter-dropdown status">
