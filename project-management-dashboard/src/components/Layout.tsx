@@ -1,11 +1,7 @@
-import type { ReactNode } from 'react'
+import { Outlet } from 'react-router-dom'
 import '../App.css'
 
-type LayoutProps = {
-  children: ReactNode
-}
-
-function Layout({ children }: LayoutProps) {
+function Layout() {
   return (
     <div className="app-shell">
       <div className="sidebar">
@@ -45,7 +41,7 @@ function Layout({ children }: LayoutProps) {
         </header>
 
         <main className="page-content">
-          {children}
+          <Outlet />
         </main>
       </div>
     </div>

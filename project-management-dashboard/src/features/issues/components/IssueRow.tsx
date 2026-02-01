@@ -1,22 +1,22 @@
+import { useNavigate } from 'react-router-dom'
 import './IssueRow.css'
+import type { Issue } from '../types'
 
-type Issue = {
-  id: string
-  title: string
-  tags: string[]
-  status: 'Open' | 'In Progress' | 'In Review'
-  priority: 'Urgent' | 'High' | 'Medium' | 'Low'
-  assignee: string
-  updatedAt: string
-}
 
 type IssueRowProps = {
   issue: Issue
 }
 
 export function IssueRow({ issue }: IssueRowProps) {
+  const navigate = useNavigate()
+
   return (
-    <tr className="issue-row">
+    <tr
+      className="issue-row"
+      onClick={() => navigate(`/issues/${issue.id}`)}
+      role="button"
+      tabIndex={0}
+    >
       <td className="issue-info">
         <div className="issue-meta">{issue.id}</div>
 
