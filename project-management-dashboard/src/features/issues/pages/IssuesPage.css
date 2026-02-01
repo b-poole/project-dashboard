@@ -24,14 +24,6 @@
   min-width: 220px;
 }
 
-.issue-field select {
-  font-size: 14px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-}
-
 
 /* Issues Table */
 

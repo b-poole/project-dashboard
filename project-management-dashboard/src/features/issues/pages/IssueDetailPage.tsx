@@ -56,7 +56,7 @@ export default function IssueDetailPage() {
   }
 
   return (
-    <div className="issue-detail-page">
+    <div className={`issue-detail-page ${isEditing ? 'editing' : ''}`}>
       {/* Back link */}
       <button
         className="back-link"
@@ -77,11 +77,11 @@ export default function IssueDetailPage() {
           <div className="issue-header-actions">
             {isEditing ? (
               <>
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancel}>Cancel</button>
+                <button className="btn-primary" onClick={handleSave}>Save</button>
+                <button className="btn-secondary" onClick={handleCancel}>Cancel</button>
               </>
             ) : (
-              <button onClick={startEditing}>Edit</button>
+              <button className="btn-secondary" onClick={startEditing}>Edit</button>
             )}
             <button className="btn-danger">🗑</button>
           </div>
@@ -118,8 +118,6 @@ export default function IssueDetailPage() {
                     prev ? { ...prev, status: value } : prev
                   )}
                 }
-                  
-                  
               >
                 {STATUS_OPTIONS.map((status) => (
                   <option key={status} value={status}>
@@ -143,8 +141,7 @@ export default function IssueDetailPage() {
 
                   setDraftIssue((prev) =>
                     prev ? { ...prev, priority: value } : prev
-                  )
-                }
+                  )}
                 }
               >
                 {PRIORITY_OPTIONS.map((priority) => (
