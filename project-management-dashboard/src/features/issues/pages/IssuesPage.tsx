@@ -10,6 +10,7 @@ const issues: Issue[] = mockIssues;
 export default function IssuesPage() {
     const [selectedStatus, setSelectedStatus] = useState<string>("All");
     const [selectedPriority, setSelectedPriority] = useState<string>('All');
+    const [searchQuery, setSearchQuery] = useState("");
 
     const filteredIssues = issues.filter((issue) => {
         const statusMatch = 
@@ -18,7 +19,11 @@ export default function IssuesPage() {
         const priorityMatch =
             selectedPriority === 'All' || issue.priority === selectedPriority;
 
-        return statusMatch && priorityMatch;
+        const searchMatch = 
+            issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            issue.id.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return statusMatch && priorityMatch && searchMatch;
     });
 
     return (
@@ -39,6 +44,14 @@ export default function IssuesPage() {
                 onStatusChange={setSelectedStatus}
                 onPriorityChange={setSelectedPriority}
             />
+
+            <input
+                type="text"
+                className="search-input"
+                placeholder="Search issues…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                />
 
             <div className='issues-table'>
                 <table>

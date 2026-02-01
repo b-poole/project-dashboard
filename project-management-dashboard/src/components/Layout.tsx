@@ -31,7 +31,7 @@ function Layout() {
 
           <input
             className="search-bar"
-            placeholder="Search issues…"
+            placeholder="Global search (coming soon)"
             disabled
           />
 

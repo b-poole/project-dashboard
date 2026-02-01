@@ -16,6 +16,14 @@
   color: #6b7280;
 }
 
+.search-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  min-width: 220px;
+}
+
 
 /* Issues Table */
 
