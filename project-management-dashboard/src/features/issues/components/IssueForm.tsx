@@ -1,5 +1,4 @@
 import type { Issue, IssueStatus, IssuePriority } from '../types';
-import './IssueForm.css';
 
 const STATUS_OPTIONS = ['Open', 'In Progress', 'In Review', 'Done'] as const;
 const PRIORITY_OPTIONS = ['Urgent', 'High', 'Medium', 'Low'] as const;
