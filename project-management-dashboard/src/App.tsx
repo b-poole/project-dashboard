@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import './App.css'
 import IssuesPage from './features/issues/pages/IssuesPage'
 import IssueDetailPage from './features/issues/pages/IssueDetailPage' 
+import CreateIssuePage from './features/issues/pages/CreateIssuePage'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/issues" replace />} />
         <Route path="/issues" element={<IssuesPage />} />
+        <Route path="/issues/new" element={<CreateIssuePage />} />
         <Route path="/issues/:issueId" element={<IssueDetailPage />} />
       </Route>
     </Routes>
